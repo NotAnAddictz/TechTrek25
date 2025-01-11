@@ -13,29 +13,29 @@ const supabase = createClient(process.env.SUPABASE_URL,process.env.SUPABASE_API_
 router.post('/', async (req, res) => {
   try {
   
-    const { username, password } = req.body;
+    const { companyname, username, password } = req.body;
 
     const { data, error } = await supabase
-      .from('loginaccount')
+      .from('companyaccount')
       .select('username')
       .eq('username', username);
 
     // Error if user exists
     if (error || data.length > 0) {
-        return res.status(400).json({ error: 'User already exists' });
+        return res.status(400).json({ error: error });
     }else {
-
         bcrypt.hash(password, saltRounds, async (err, hash) => {
             if (err) {
                 return res.status(500).json({ error: 'Internal server error -> bcrypt' });
             }
-            // Insert user into database
+            let time = new Date(Date.now()).toISOString().replace('T',' ').replace('Z','');
+            
             const { data, error } = await supabase
-                .from('loginaccount')
-                .insert([{ username, passwordHash: hash }]);
+                .from('companyaccount')
+                .insert([{companyname:companyname,activeaccount:true, cashbalance:0,carbonbalance:0,createddatetime:time,updateddatetime:time, username:username, passwordHash: hash }]);
             
             if (error) {
-                return res.status(500).json({ error: 'Internal server error insertion' });
+                return res.status(500).json({ error: error });
             }
             res.json({ message: 'User registered successfully' });
         });
