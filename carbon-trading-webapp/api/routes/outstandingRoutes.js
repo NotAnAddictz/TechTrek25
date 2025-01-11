@@ -91,8 +91,24 @@ router.get('/outstanding/company/:companyId', async (req, res) => {
     }
 });
 
+// 7. GET oustanding request by requestorcompanyId
+router.get('/outstanding/requestorCompany/:companyId', async (req, res) => {
+  try {
+      const { companyId } = req.params;
+      const {data, error} = await supabase
+          .from('outstandingrequest')
+          .select('*')
+          .eq('requestorcompanyid', companyId);
+      if (error) throw error;
+      res.status(200).json(data);
+      // res.send(data);
+  } catch (error) {
+      res.status(400).json({ error: error.message });
+  }
+});
 
-// 7. DELETE outstanding request
+
+// 8. DELETE outstanding request
 router.delete('/outstanding/delete/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -107,7 +123,7 @@ router.delete('/outstanding/delete/:id', async (req, res) => {
   }
   })
 
-// 8. UPDATE outstanding request
+// 9. UPDATE outstanding request
 router.put('/outstanding/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
