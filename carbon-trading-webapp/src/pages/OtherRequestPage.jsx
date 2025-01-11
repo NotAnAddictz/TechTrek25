@@ -217,7 +217,11 @@ const OtherRequestPage = () => {
       const idArray = checkedState.map((val, key) => val == true ? data[key].id : false)
       const filteredId = idArray.filter(item => item !== false)
       console.log(filteredId)
-      // console.log("Request(s) Accepted!")
+      for (let i = 0; i < filteredId.length; i++) {
+        console.log(JSON.stringify({id: filteredId[i], requeststatus: "Approved"}))
+      } 
+      // console.log(JSON.stringify({id: filteredId.map((val, key) => val), requeststatus: "Approved"}))
+      console.log("Request(s) Accepted!")
       // fetch("http://127.0.0.1:5000/api/request/outstanding/company/" + { user }, {
       //   method: 'POST',
       //   headers: {
@@ -235,7 +239,10 @@ const OtherRequestPage = () => {
       const idArray = checkedState.map((val, key) => val == true ? data[key].id : false)
       const filteredId = idArray.filter(item => item !== false)
       console.log(filteredId)
-      // console.log("Request(s) Rejected!")
+      for (let i = 0; i < filteredId.length; i++) {
+        console.log(JSON.stringify({id: filteredId[i], requeststatus: "Approved"}))
+      } 
+      console.log("Request(s) Rejected!")
       // fetch("http://127.0.0.1:5000/api/request/outstanding/company/" + { user }, {
       //   method: 'POST',
       //   headers: {
