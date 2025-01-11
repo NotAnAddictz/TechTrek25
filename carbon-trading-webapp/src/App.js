@@ -1,5 +1,4 @@
 import Balances from "./components/Balances";
-
 function App() {
   return (
     <div className="App">
