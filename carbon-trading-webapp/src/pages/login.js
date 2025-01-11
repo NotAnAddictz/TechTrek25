@@ -38,9 +38,11 @@ const Login = () => {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <div className="logo-container">
-            <LogIn className="logo-icon" />
-          </div>
+        
+          <img 
+          src="/carbon.png"  
+          style={{ width: '80px', height: 'auto' }} 
+        />         
           <h2 className="login-title">Welcome back</h2>
           <p className="login-subtitle">Please sign in to your account</p>
         </div>

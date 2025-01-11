@@ -1,6 +1,6 @@
-import InsertButton from "./InsertButton";
-import DeleteButton from "./DeleteButton";
-import EditButton from "./EditButton";
+import InsertButton from "../components/InsertButton";
+import DeleteButton from "../components/DeleteButton";
+import EditButton from "../components/EditButton";
 const data = [
   {
     requestdate: "1/11/2015",
