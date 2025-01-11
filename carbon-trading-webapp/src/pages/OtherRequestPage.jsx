@@ -4,9 +4,9 @@ import 'reactjs-popup/dist/index.css';
 import Navbar from '../components/navbar';
 
 const data = [
-    {requestdate: "1/11/2015", companyname: "UOB", carbonprice: "10 SGD/Tonnes", carbonquantity: "20 Tonnes", 
+    {requestdate: "1/11/2026", companyname: "UOB", carbonprice: "10 SGD/Tonnes", carbonquantity: "20 Tonnes", 
         requestingreason: "Need credits", requesttype: "Buy"},
-    {requestdate: "4/9/2018", companyname: "OCBC", carbonprice: "20 SGD/Tonnes", carbonquantity: "40 Tonnes", 
+    {requestdate: "4/9/2026", companyname: "OCBC", carbonprice: "20 SGD/Tonnes", carbonquantity: "40 Tonnes", 
         requestingreason: "Required", requesttype: "Sell"},
     {requestdate: "1/11/2025", companyname: "Singtel", carbonprice: "30 SGD/Tonnes", carbonquantity: "50 Tonnes", 
         requestingreason: "Automatic", requesttype: "Buy"},
@@ -17,6 +17,13 @@ const data = [
 const OtherRequestPage = () => {
     const [overdueRequests, setOverdueRequests] = React.useState([])
     const [hasModal, setHasModal] = React.useState(false)
+    const [checkedState, setCheckedState] = useState(new Array(data.length).fill(false))
+
+    const handleOnChange = (position) => {
+      const updatedCheckState = checkedState.map((val, key) => key == position ? !val : val)
+
+      setCheckedState(updatedCheckState)
+    }
 
     useEffect(() => {
         const date = new Date()
@@ -62,15 +69,16 @@ const OtherRequestPage = () => {
                             <td>{val.carbonquantity}</td>
                             <td>{val.requestingreason}</td>
                             <td>{val.requesttype}</td>
-                            <td><input type='checkbox'/></td>
+                            <td><input type='checkbox' id={`custom-checkbox-${key}`} checked={checkedState[key]}
+                            onChange={() => handleOnChange(key)}/></td>
                         </tr>
                     )
             })}
         </table>
-        <button style={{backgroundColor: "green", color: "white", borderRadius: "5px", margin: "100px"}}>
+        <button type="button" class="btn btn-success btn-lg m-5" onClick={() => console.log(checkedState)}>
             Accept
         </button>
-        <button style={{backgroundColor: "red", color: "white", borderRadius: "5px"}}>
+        <button type="button" class="btn btn-danger btn-lg m-5" onClick={() => console.log(checkedState)}>
             Reject
         </button>
         {hasModal && (
