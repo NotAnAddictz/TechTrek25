@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css';
+import Navbar from '../components/navbar';
 
 const data = [
     {requestdate: "1/11/2015", companyname: "UOB", carbonprice: "10 SGD/Tonnes", carbonquantity: "20 Tonnes", 

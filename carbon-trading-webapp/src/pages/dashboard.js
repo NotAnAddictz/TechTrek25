@@ -1,6 +1,7 @@
 import React from 'react';
 import { BarChart3, Users, FileText, TrendingUp, Search, Filter } from 'lucide-react';
 import './dashboard.css';
+import Navbar from '../components/navbar';
 
 const Dashboard = () => {
   // Mock data - replace with actual API calls

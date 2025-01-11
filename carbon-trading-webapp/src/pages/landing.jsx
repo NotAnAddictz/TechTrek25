@@ -1,6 +1,7 @@
 import InsertButton from "../components/InsertButton";
 import DeleteButton from "../components/DeleteButton";
 import EditButton from "../components/EditButton";
+import Navbar from '../components/navbar';
 const data = [
   {
     requestdate: "1/11/2015",
@@ -30,6 +31,7 @@ const data = [
 
 const Balances = ({ company, cash, credit }) => {
   return (
+    <div><Navbar />
     <div>
       {" "}
       {company}
@@ -79,7 +81,7 @@ const Balances = ({ company, cash, credit }) => {
       <InsertButton />
       <EditButton />
       <DeleteButton />
-    </div>
+    </div></div>
   );
 };
 
