@@ -42,7 +42,7 @@ router.post('/outstanding', async (req, res) => {
     const { companyid, requestorcompanyid, carbonunitprice, carbonquantity, requestreason, requesttype } = req.body;
     const { data, error } = await supabase.from('outstandingrequest').insert([
       { companyid, requestorcompanyid, carbonunitprice, carbonquantity, requestreason, requeststatus, requesttype },
-    ]);
+    ]).select('id');
     if (error) throw error;
     res.status(201).json({ message: 'Outstanding request created', request: data });
   } catch (error) {
@@ -127,9 +127,14 @@ router.delete('/outstanding/delete/:id', async (req, res) => {
 router.put('/outstanding/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
+    const { carbonunitprice, carbonquantity, requestreason, requesttype } = req.body;
     const { data, error} = await supabase
         .from('outstandingrequest')
-        .update({ carbonunitprice: 1000 })
+        .update({ carbonunitprice: carbonunitprice,
+          carbonquantity: carbonquantity, 
+          requestreason: requestreason, 
+          requesttype: requesttype
+         })
         .eq('id', id);
     if (error) throw error;
     res.status(200).json({ message: 'Outstanding request updated',  request: data });
