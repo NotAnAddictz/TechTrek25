@@ -38,7 +38,8 @@ router.get('/outstanding/:id', async (req, res) => {
 // 3. POST - Create a new outstanding request
 router.post('/outstanding', async (req, res) => {
   try {
-    const { companyid, requestorcompanyid, carbonunitprice, carbonquantity, requestreason, requeststatus, requesttype } = req.body;
+    const requeststatus = 'Pending'
+    const { companyid, requestorcompanyid, carbonunitprice, carbonquantity, requestreason, requesttype } = req.body;
     const { data, error } = await supabase.from('outstandingrequest').insert([
       { companyid, requestorcompanyid, carbonunitprice, carbonquantity, requestreason, requeststatus, requesttype },
     ]);
