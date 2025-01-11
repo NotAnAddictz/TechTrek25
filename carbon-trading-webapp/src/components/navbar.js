@@ -31,7 +31,7 @@ const Navbar = () => {
         
         <button 
           className={`nav-button ${location.pathname === '/request' ? 'active' : ''}`}
-          onClick={() => navigate('/request')}
+          onClick={() => navigate('/OtherRequestPage')}
         >
           <FileText className="nav-icon" />
           <span>Request</span>
