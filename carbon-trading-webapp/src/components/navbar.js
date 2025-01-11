@@ -20,6 +20,7 @@ const Navbar = () => {
           alt="Logo" 
           className="navbar-logo" 
           style={{ width: '80px', height: 'auto' }} 
+          onClick={() => navigate('/')}
         />
         <button 
           className={`nav-button ${location.pathname === '/home' ? 'active' : ''}`}
