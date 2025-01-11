@@ -1,9 +1,16 @@
-import Balances from "./components/Balances";
+import './App.css';
+import Dashboard from './pages/dashboard';
+import Login from './pages/login';
+import { Routes, Route } from "react-router-dom"
+
 function App() {
   return (
     <div className="App">
-      <Balances company="DBS" cash="123" credit="456" />
-    </div>
+    <Routes>
+      <Route path="/" element={ <Login/> } />
+      <Route path="/dashboard" element={ <Dashboard/> } />
+    </Routes>
+  </div>
   );
 }
 
