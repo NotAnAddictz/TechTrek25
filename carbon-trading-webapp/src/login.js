@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Mail, LogIn } from 'lucide-react';
 import './login.css';
+import Navbar from './navbar';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const Login = () => {
   };
 
   return (
+    <div>
+        <Navbar />
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
@@ -97,7 +100,7 @@ const Login = () => {
           </p>
         </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 
