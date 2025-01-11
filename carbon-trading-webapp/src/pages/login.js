@@ -104,7 +104,7 @@ const Login = () => {
             </a>
           </div>
 
-          <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button"          onClick={() => navigate('/home')}          >
             Sign in
           </button>
         </form>
@@ -112,8 +112,9 @@ const Login = () => {
         <div className="signup-container">
           <p className="signup-text">
             Don't have an account?
-            <a href="#" className="signup-link">
+            <a href="#" className="signup-link"           onClick={() => navigate('/register')}>
               Sign up
+              
             </a>
           </p>
         </div>

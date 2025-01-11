@@ -1,8 +1,7 @@
-
-
 function EditButton({ onClick }) {
     const editData = async () => {
-        try {
+
+      try {
             console.log("editing")
         } catch (error) {
             console.error("Error inserting", error)
