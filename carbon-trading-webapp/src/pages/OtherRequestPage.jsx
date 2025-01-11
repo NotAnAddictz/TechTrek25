@@ -1,16 +1,31 @@
-import * as React from 'react'
+import React, { useEffect, useState } from 'react';
 
 const data = [
     {requestdate: "1/11/2015", companyname: "UOB", carbonprice: "10 SGD/Tonnes", carbonquantity: "20 Tonnes", 
         requestingreason: "Need credits", requesttype: "Buy"},
-    {requestdate: "04/09/2018", companyname: "OCBC", carbonprice: "20 SGD/Tonnes", carbonquantity: "40 Tonnes", 
+    {requestdate: "4/9/2018", companyname: "OCBC", carbonprice: "20 SGD/Tonnes", carbonquantity: "40 Tonnes", 
         requestingreason: "Required", requesttype: "Sell"},
-    {requestdate: "1/11/2022", companyname: "Singtel", carbonprice: "30 SGD/Tonnes", carbonquantity: "50 Tonnes", 
-        requestingreason: "Automatic", requesttype: "Buy"}
+    {requestdate: "1/11/2025", companyname: "Singtel", carbonprice: "30 SGD/Tonnes", carbonquantity: "50 Tonnes", 
+        requestingreason: "Automatic", requesttype: "Buy"},
+    {requestdate: "1/5/2025", companyname: "NCS", carbonprice: "30 SGD/Tonnes", carbonquantity: "50 Tonnes", 
+            requestingreason: "None", requesttype: "Sell"}
 ]
 
 const OtherRequestPage = () => {
+    const [overdueRequests, setOverdueRequests] = React.useState([])
+
+    useEffect(() => {
+        const date = new Date()
+        const lastWeek = new Date()
+        lastWeek.setDate(date.getDate() - 7)
+        const overdue = data.filter((val) => lastWeek > new Date(val.requestdate));
+        console.log(overdue)
+        setOverdueRequests(overdue);
+    }, [])
+
+
   return (
+
     <div>
         <h1>Outstanding Requests</h1>
         <table className="center">
