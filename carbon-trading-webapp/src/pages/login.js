@@ -3,16 +3,32 @@ import { useNavigate } from 'react-router-dom';
 import { Lock, Mail, LogIn } from 'lucide-react';
 import './login.css';
 import Navbar from '../components/navbar';
+//import { supabase } from './supabaseClient';
 
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  // const [error, setError] = useState(null);
+  //  async function signInUser(username, password) {
+  //   const { data, error } = await supabase.auth.signInWithPassword({
+  //     username,
+  //     password,
+  //   });
+  
+  //   if (error) {
+  //     console.error('Error signing in:', error.message);
+  //   } else {
+  //     console.log('User signed in:', data);
+  //     // data.session contains session details such as access token, user info, etc.
+  //   }
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // TODO: Implement actual authentication
     console.log('Login attempt with:', { username, password });
+    //signInUser(username,password);
     navigate('/Home');
   };
 
