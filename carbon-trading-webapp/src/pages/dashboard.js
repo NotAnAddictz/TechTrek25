@@ -27,6 +27,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+        <Navbar />
       {/* Stats Overview */}
       <div className="stats-grid">
         {stats.map((stat, index) => (

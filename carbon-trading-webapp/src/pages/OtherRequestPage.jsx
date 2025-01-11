@@ -40,6 +40,7 @@ const OtherRequestPage = () => {
   return (
 
     <div>
+      <Navbar />
         <h1>Outstanding Requests</h1>
         <table className="center">
             <tr>

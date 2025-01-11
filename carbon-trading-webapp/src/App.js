@@ -13,8 +13,6 @@ function App() {
       <Route path="/dashboard" element={ <Dashboard/> } />
       <Route path="/home" element={ <Balances/> } />
       <Route path="/OtherRequestPage" element={ <OtherRequestPage/> } />
-
-
     </Routes>
   </div>
   );
