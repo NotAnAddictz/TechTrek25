@@ -1,5 +1,3 @@
-
-
 function DeleteButton({ onClick }) {
     const deleteData = async () => {
         try {
