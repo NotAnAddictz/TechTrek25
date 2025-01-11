@@ -68,10 +68,13 @@
     font-weight: 500;
     color: #374151;
     margin-bottom: 0.5rem;
+  
   }
   
   .input-container {
     position: relative;
+    width: 90%;
+    box-sizing: border-box;
   }
   
   .input-icon {
@@ -151,7 +154,7 @@
   
   .submit-button:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 0 3px rgba(240, 35, 35, 0.5);
   }
   
   /* Sign up link */

@@ -19,7 +19,7 @@ const Navbar = () => {
           src="/dbslogo.png"  
           alt="Logo" 
           className="navbar-logo" 
-          style={{ width: '80px', height: 'auto' }}  // Adjust inline style
+          style={{ width: '80px', height: 'auto' }} 
         />
         <button 
           className={`nav-button ${location.pathname === '/home' ? 'active' : ''}`}

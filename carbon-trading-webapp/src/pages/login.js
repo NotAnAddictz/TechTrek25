@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Mail, LogIn } from 'lucide-react';
 import './login.css';
-import Navbar from './navbar';
+import Navbar from '../components/navbar';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // TODO: Implement actual authentication
-    console.log('Login attempt with:', { email, password });
-    navigate('/dashboard');
+    console.log('Login attempt with:', { username, password });
+    navigate('/Home');
   };
 
   return (
@@ -31,20 +31,20 @@ const Login = () => {
 
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="email" className="form-label">
-              Email address
+            <label htmlFor="username" className="form-label">
+            username
             </label>
             <div className="input-container">
               <Mail className="input-icon" />
               <input
-                id="email"
-                name="email"
-                type="email"
+                id="username"
+                name="username"
+                type="username"
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="form-input"
-                placeholder="you@example.com"
+                placeholder="John123"
               />
             </div>
           </div>
