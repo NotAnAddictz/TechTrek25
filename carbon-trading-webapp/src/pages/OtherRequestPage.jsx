@@ -15,7 +15,7 @@ import Navbar from '../components/navbar';
 // ]
 
 
-
+const user = "2045";
 
 const data = [
   {
@@ -205,12 +205,61 @@ const OtherRequestPage = () => {
     const [overdueRequests, setOverdueRequests] = React.useState([])
     const [hasModal, setHasModal] = React.useState(false)
     const [checkedState, setCheckedState] = useState(new Array(data.length).fill(false))
+    // const [data, setData] = useState([]);
 
     const handleOnChange = (position) => {
       const updatedCheckState = checkedState.map((val, key) => key == position ? !val : val)
 
       setCheckedState(updatedCheckState)
     }
+
+    const handleAccept = () => {
+      const idArray = checkedState.map((val, key) => val == true ? data[key].id : false)
+      const filteredId = idArray.filter(item => item !== false)
+      console.log(filteredId)
+      // console.log("Request(s) Accepted!")
+      // fetch("http://127.0.0.1:5000/api/request/outstanding/company/" + { user }, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     id: filteredId.map((val, key) => val),
+      //     requeststatus: "Approved",
+      //   })
+      // })
+    }
+
+    const handleReject = () => {
+      const idArray = checkedState.map((val, key) => val == true ? data[key].id : false)
+      const filteredId = idArray.filter(item => item !== false)
+      console.log(filteredId)
+      // console.log("Request(s) Rejected!")
+      // fetch("http://127.0.0.1:5000/api/request/outstanding/company/" + { user }, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     id: filteredId.map((val, key) => val),
+      //     requeststatus: "Rejected",
+      //   })
+      // })
+    }
+
+    // useEffect(() => {
+    //   fetch("http://127.0.0.1:5000/api/request/outstanding/company/" + { user })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //       setData(data);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err.message);
+    //     });
+    // }, []);
 
     useEffect(() => {
         const date = new Date()
@@ -262,10 +311,10 @@ const OtherRequestPage = () => {
                     )
             })}
         </table>
-        <button type="button" class="btn btn-success btn-lg m-5" onClick={() => console.log(checkedState)}>
+        <button type="button" class="btn btn-success btn-lg m-5" onClick={handleAccept}>
             Accept
         </button>
-        <button type="button" class="btn btn-danger btn-lg m-5" onClick={() => console.log(checkedState)}>
+        <button type="button" class="btn btn-danger btn-lg m-5" onClick={handleReject}>
             Reject
         </button>
         {hasModal && (
