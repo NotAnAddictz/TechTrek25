@@ -7,39 +7,54 @@ dotenv.config();
 
 const router = express.Router(); // Create a router instance
 
-const saltRounds = 10;
 // Supabase connection
 const supabase = createClient(process.env.SUPABASE_URL,process.env.SUPABASE_API_KEY);
 router.post('/', async (req, res) => {
   try {
   
     const { username, password } = req.body;
-
+    
     // Check if user exists
     const { data, error } = await supabase
-      .from('loginaccount')
-      .select('username, passwordHash')
+      .from('companyaccount')
+      .select('username, passwordHash,companyid')
       .eq('username', username);
 
-    res.send(data)
     if (error || !data || data.length === 0) {
       return res.status(400).json({ error: 'User does not exist' });
     }
 
     const user = data[0];
-    bcrypt.compare(password, user.passwordHash, (err, result) => {
-      if (err || !result) {
-        return res.status(400).json({ error: 'Invalid password' });
-      }
+    
+    // bcrypt.compare(password, user.passwordHash, (err, result) => {
+    //   if (err.length == null) {
+    //     return res.status(400).json({error:err});
+    //   }
+    //   else if (!result){
+    //     return res.status(401).json({err:"no results"})
+    //   }
 
-      // Generate JWT if password matches
-      const token = jwt.sign({ username: user.username }, SECRET, {
-        expiresIn: '1h', // Token expiration time
+    if (password == user.passwordHash){
+      if (err.length == null) {
+            return res.status(400).json({error:err});
+          }
+    }
+;
+      
+    let time = new Date(Date.now()).toISOString().replace('T',' ').replace('Z','');
+    let expire_time = new Date(new Date().setHours(new Date().getHours() + 2));
+      // Create token
+      const token = jwt.sign({ username: user.username }, process.env.HASH_KEY, {
+        expiresIn: '2h', 
       });
+      const erorr = await supabase
+      .from('sessions')
+      .insert({companyid:user.companyid, token:token,expire_at:expire_time})
 
-      res.json({ token });
-    });
-
+      if (error){
+        res.status(500).json({error: "Unable to geneerate Token"})
+      }
+      res.json({error: error, token: token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });

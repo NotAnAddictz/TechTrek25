@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
     }else {
         bcrypt.hash(password, saltRounds, async (err, hash) => {
             if (err) {
-                return res.status(500).json({ error: 'Internal server error -> bcrypt' });
+                return res.status(500).json({ error: 'Internal server error' });
             }
             let time = new Date(Date.now()).toISOString().replace('T',' ').replace('Z','');
             
